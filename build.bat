@@ -1,0 +1,1 @@
+g++ -I./include Scnary.cpp -o Scnary.o && PAUSE
