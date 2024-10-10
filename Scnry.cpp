@@ -30,7 +30,7 @@ LoadState Scnry::LoadScene(const char* ScenePath)
     YAML::Node file = YAML::LoadFile(path);
     if(!file["SceneNodes"])
         return LoadState::FAIL;
-    YAML::Node sceneNodes = YAML::Load("Node");
+    YAML::Node sceneNodes = YAML::Load("SceneNodes");
     for (std::size_t i=0;i<sceneNodes.size();i++) {
         std::cout << sceneNodes[i].as<string>() << "\n";
     }
