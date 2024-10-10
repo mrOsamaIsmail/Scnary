@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/osama/OneDrive/Desktop/REPOS/Scnary",
-      "program": "c:/Users/osama/OneDrive/Desktop/REPOS/Scnary/build/Debug/outDebug",
+      "cwd": "c:/Users/osama/OneDrive/Desktop/REPOS/Scnry",
+      "program": "c:/Users/osama/OneDrive/Desktop/REPOS/Scnry/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

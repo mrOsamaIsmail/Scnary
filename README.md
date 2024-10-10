@@ -1,6 +1,6 @@
-# This is SCNARY
+# This is Scnry
 
-SCnary is a lightweight library I am developing for game asset management and overall scene serialization based solely on the YAML markup and using some already made YAML parsers SCNARY uses  [jbeder's yaml-cpp ](https://github.com/jbeder/yaml-cpp) parser
+Scnry is a lightweight library I am developing for game asset management and overall scene serialization based solely on the YAML markup and using some already made YAML parsers Scnry uses  [jbeder's yaml-cpp ](https://github.com/jbeder/yaml-cpp) parser
 
 
 # Project Structure

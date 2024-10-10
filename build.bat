@@ -1,1 +1,1 @@
-g++ -I./include Scnary.cpp -o Scnary.o && PAUSE
+g++ -g -I./include -I./Dependencies ./**.cpp -o test.exe  && test.exe&& PAUSE
