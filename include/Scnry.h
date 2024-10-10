@@ -47,10 +47,10 @@ class Scene{
 class Scnry
 {
     public:
-        static list<string> Scenes;
-        static Scene* CurrentLoaded;
+        //static list<string> Scenes;
+        //static Scene* CurrentLoaded;
         //LoaderFunctions
-        static dictionary<NodeType , Node(*)(string const&)> NodeLoaders;
+        //static dictionary<NodeType , Node(*)(string const&)> NodeLoaders;
 };
 
 
