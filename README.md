@@ -5,6 +5,10 @@ Scnry is a lightweight library I am developing for game asset management and ove
 
 //-- PS : you might face a problem while linking the library that it would look for the functions using __declspec(dllimport)
 you'll have to specify that its a static link using #define YAML_CPP_STATIC_DEFINE
+//-- Error (std libraries are defined multiple times?) Make sure both projects ( C/C++ -> Code Generation /Runtime Library ) set to the same (Multi-threaded(/MT))
+
+
+
 
 # Project Structure
 
