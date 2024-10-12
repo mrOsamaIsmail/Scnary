@@ -47,13 +47,13 @@ dictionary<Scnry::NodeType, Scnry::Node(*)()> Scnry::Scnry::NodeLoaders;
 
 Scnry::Scene Scnry::Scnry::CurrentLoaded;
 
-Scnry::Scene::Scene(string SceneName = "SCEmpty") :
+Scnry::Scene::Scene(string SceneName) :
     Name(SceneName),
     SceneNodes(),
     Index(0),
     VersionMaj(0),
     VersionMin(0),
-    LastEdit(0)
+    LastEdit(0.0f)
 {}
 YAML::Node Scnry::Scnry::CurrentLoadedRoot;
 Scnry::Node::Node(const char* name, NodeType&& type, Array<float,16>&& nodeMatrix_16)
@@ -96,10 +96,10 @@ Scnry::LoadState Scnry::LoadScene(const char* ScenePath)
     currentScene.Name = file["SceneName"].as<string>();
     currentScene.VersionMaj = (file["Version"])["Maj"].as<int>();
     currentScene.VersionMin = (file["Version"])["Min"].as<int>();
-    Scnry::CurrentLoaded = currentScene;
-    Scnry::CurrentLoadedRoot = file;
+  
         
     YAML::Node& sceneNodes = file["SceneNodes"];
+    sceneNodes.SetStyle(YAML::EmitterStyle::Block);
     Scnry::CurrentLoadedRoot = file;
     prntln(sceneNodes.Type());
     for (size_t i = 0; i < sceneNodes.size(); i++)
@@ -114,12 +114,17 @@ Scnry::LoadState Scnry::LoadScene(const char* ScenePath)
     YAML::Node newNode;
     newNode["Name"] = "NewNode";
     newNode["Transform"] = std::array<float, 16>({1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1});
+    newNode["Transform"].SetStyle(YAML::EmitterStyle::Flow);
     newNode["Parent"] = 2;
     newNode["NodeType"] = 6;
 
-    // Add this new node to SceneNodes
     file["SceneNodes"].push_back(newNode);
+    auto& nodesNode = file["SceneNodes"];
 
+
+
+    Scnry::CurrentLoaded = currentScene;
+    Scnry::CurrentLoadedRoot = file;
     return LoadState::SUCCESS;
 }
 
@@ -135,8 +140,7 @@ Scnry::LoadState Scnry::SaveScene(const char* SaveToPath)
     node["VersionMaj"] = Scnry::CurrentLoaded.VersionMaj;
     node["VersionMin"] = Scnry::CurrentLoaded.VersionMin;
     YAML::Emitter out;
-    out.SetMapFormat(YAML::Flow);
-    //out.SetSeqFormat(YAML::BeginSeq);
+
     out << Scnry::Scnry::CurrentLoadedRoot;
 
     if (!out.good()) {

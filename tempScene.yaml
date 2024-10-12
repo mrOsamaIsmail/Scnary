@@ -1,1 +1,13 @@
-{SceneName: TestScene, Version: {Maj: 1, Min: 0}, SceneNodes: [{Name: mmm, Transform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1], Parent: 0, NodeType: 3}, {Name: cccc, Transform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1], Parent: 0, NodeType: 3}, {Name: bbfb, Transform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1], Parent: 1, NodeType: 4}, {Name: NewNode, Transform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1], Parent: 2, NodeType: 6}, {Name: NewNode, Transform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1], Parent: 2, NodeType: 6}]}
+SceneName: TestScene
+Version:
+  Maj: 1
+  Min: 0
+SceneNodes:
+  - Name: NewNode
+    Transform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    Parent: 2
+    NodeType: 6
+  - Name: NewNode
+    Transform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+    Parent: 2
+    NodeType: 6
