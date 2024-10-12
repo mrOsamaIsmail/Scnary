@@ -4,11 +4,13 @@
 
 #include <string>
 #include <list>
-#include <unordered_map>
+#include <map>
 #include <array>
 
+#define prntln(x) std::cout<< x <<"\n" 
+
 template <typename type,typename key>
-using dictionary = std::unordered_map<key,type>;
+using dictionary = std::map<key,type>;
 
 template <typename type,std::size_t count>
 using Array = std::array<type, count>;
