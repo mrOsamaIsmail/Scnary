@@ -52,7 +52,7 @@ class Scnry
         static list<string> Scenes;
         static Scene CurrentLoaded;
         //LoaderFunctions
-        static dictionary<NodeType , Node(*)()> NodeLoaders;
+        static dictionary<NodeType , bool(*)(Node&,const string&)> NodeLoaders;
         static YAML::Node CurrentLoadedRoot;
 };
 

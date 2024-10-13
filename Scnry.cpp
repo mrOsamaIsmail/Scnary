@@ -6,8 +6,6 @@
 #include <fstream>
 #include <chrono>
 
-
-
 namespace YAML 
 {
     template <>
@@ -42,8 +40,8 @@ namespace YAML
        
     };
 }
-//list<string> Scnry::Scnry::Scenes = list<string>();
-dictionary<Scnry::NodeType, Scnry::Node(*)()> Scnry::Scnry::NodeLoaders;
+
+dictionary<Scnry::NodeType, bool(*)(Scnry::Node&,const string&)> Scnry::Scnry::NodeLoaders;
 
 Scnry::Scene Scnry::Scnry::CurrentLoaded;
 
@@ -101,25 +99,24 @@ Scnry::LoadState Scnry::LoadScene(const char* ScenePath)
     YAML::Node& sceneNodes = file["SceneNodes"];
     sceneNodes.SetStyle(YAML::EmitterStyle::Block);
     Scnry::CurrentLoadedRoot = file;
-    prntln(sceneNodes.Type());
+    
     for (size_t i = 0; i < sceneNodes.size(); i++)
     {
         YAML::Node& node = sceneNodes[i];
-        NodeType type = static_cast<NodeType>(node["NodeType"].as<int>());
+         
         std::string res;
-        // -TBD Pass the node to its loader-
-        //Scnry::NodeLoaders[type];
+        
+        Node Scene_node = Node();
+        Scene_node.Name = node["Name"].as<string>();
+        Scene_node.Type = static_cast<NodeType>(node["NodeType"].as<int>());
+        Scene_node.Parent = node["Parent"].as<int>();
+        Scene_node.TransformMatrix = node["Transform"].as<Array<float,16>>();
+
+        Scnry::Scnry::NodeLoaders[Scene_node.Type](Scene_node,node["AssetId"].as<string>());
+        
     }
 
-    YAML::Node newNode;
-    newNode["Name"] = "NewNode";
-    newNode["Transform"] = std::array<float, 16>({1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1});
-    newNode["Transform"].SetStyle(YAML::EmitterStyle::Flow);
-    newNode["Parent"] = 2;
-    newNode["NodeType"] = 6;
-
-    file["SceneNodes"].push_back(newNode);
-    auto& nodesNode = file["SceneNodes"];
+   
 
 
 
@@ -161,7 +158,16 @@ Scnry::LoadState LoadSceneAsync(const char* ScenePath)
 
 Scnry::LoadState AddItemToScene(Scnry::ISerializable const& Item)
 {
+    YAML::Node newNode;
+    newNode["Name"] = "NewNode";
+    newNode["Transform"] = std::array<float, 16>({ 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 });
+    newNode["Transform"].SetStyle(YAML::EmitterStyle::Flow);
+    newNode["Parent"] = 2;
+    newNode["NodeType"] = 6;
+    newNode["AssetId"] = string("FFXG");
 
+    Scnry::Scnry::CurrentLoadedRoot["SceneNodes"].push_back(newNode);
+    //auto& nodesNode = file["SceneNodes"];
     return Scnry::LoadState::SUCCESS;
 }
 Scnry::LoadState RemoveItemFromScene(Scnry::ISerializable const& Item)
