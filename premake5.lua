@@ -38,4 +38,27 @@ workspace "Scnry"
         }
 
         filter{}
+
+    project "ScnrySingle"
+        language "C++"
+        cppdialect "C++17"
+        kind "StaticLibrary"
+        files {
+            "./include/**.h",
+            "./include/**.hpp",
+            "./Dependencies/yaml-cpp/include/**.h",
+            "./Dependencies/yaml-cpp/include/**.hpp",
+            "./Dependencies/yaml-cpp/src/**.h",
+            "./Dependencies/yaml-cpp/src/**.cpp",
+            "./Scnry.cpp"--,
+            --"./MainTest.cpp"
+        }
+       
+        filter "configurations:Debug"
+        
+
+        filter "configurations:Release"
+        
+
+        filter{}
         
