@@ -29,20 +29,6 @@ public:
 
 namespace YAML
 {
-    /*template <>
-    struct convert<Scnry::NodeType> 
-    {
-        static Node encode(const Scnry::NodeType& ntype) 
-        {
-            Node nod;
-            nod["Type"] = (int)ntype;
-            return nod;
-        }
-        static bool decode(const Node& node, Scnry::NodeType& dest) 
-        {
-            dest = static_cast<Scnry::NodeType>(node["Type"].as<int>());
-        }
-    };*/
     template<>
     struct convert<Scnry::Version> 
     {
@@ -130,7 +116,7 @@ namespace YAML
 std::shared_ptr<Scnry::Impl> Scnry::Scnry::implementation;
 dictionary<Scnry::NodeType, bool(*)(Scnry::Node&)> Scnry::Scnry::NodeLoaders;
 Scnry::Scene Scnry::Scnry::CurrentLoaded;
-
+string Scnry::Scnry::CurrentPath;
 bool Scnry::Scnry::Init() 
 {
     //Scnry::Scnry::NodeLoaders() //= dictionary<Scnry::NodeType, bool(*)(Scnry::Node&, const string&)>();
@@ -187,7 +173,8 @@ bool Scnry::Node::operator !=(const Node& other) const
 Scnry::LoadState Scnry::Scnry::LoadScene(const char* ScenePath)
 {
     string path = string(ScenePath);
-    
+    Scnry::CurrentPath = path;
+
     YAML::Node file = YAML::LoadFile(path);
     Scene currentScene;
     currentScene = file["Scene"].as<Scene>();
@@ -208,7 +195,7 @@ Scnry::LoadState Scnry::Scnry::LoadScene(uint SceneIndex)
     //Scnry::implementation = new Impl();
     return LoadState::SUCCESS;
 }
-Scnry::LoadState Scnry::Scnry::SaveScene(const char* SaveToPath)
+Scnry::LoadState Scnry::Scnry::SaveScene(string SaveToPath)
 {
     YAML::Node node;
     node["Scene"] = Scnry::CurrentLoaded;
@@ -224,10 +211,19 @@ Scnry::LoadState Scnry::Scnry::SaveScene(const char* SaveToPath)
 
         return LoadState::FAIL;
     }
+    if (SaveToPath.compare(string("SAME"))==0)
+    {
 
-    std::ofstream fileOut(SaveToPath);
-    fileOut << out.c_str();
-    fileOut.close();
+        std::ofstream fileOut(Scnry::CurrentPath);
+        fileOut << out.c_str();
+        fileOut.close();
+    }
+    else 
+    {
+        std::ofstream fileOut(SaveToPath);
+        fileOut << out.c_str();
+        fileOut.close();
+    }
     return LoadState::SUCCESS;
 }
 

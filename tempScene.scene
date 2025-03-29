@@ -18,9 +18,4 @@ Scene:
       Parent: -1
       NodeType: 0
       Transform: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-      AssetID: 1151313522
-    - Name: DDDD
-      Parent: -1
-      NodeType: 0
-      Transform: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-      AssetID: 1353558306
+      AssetID: -1842073963

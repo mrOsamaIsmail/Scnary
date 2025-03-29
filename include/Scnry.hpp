@@ -88,6 +88,7 @@ public:
         //static Scnry instance;
         static list<string> Scenes;
         static Scene CurrentLoaded;
+        static string CurrentPath;
         //LoaderFunctions
         static dictionary<NodeType , bool(*)(Node&)> NodeLoaders;
         static bool Init();
@@ -97,7 +98,7 @@ public:
         static LoadState AddItemToScene(ISerializable const& Item);
         static LoadState AddNode(Node&& Item,int Patrnt = -1);
         static LoadState RemoveNode(Node Item);
-        static LoadState SaveScene(const char* SaveToPath = "SAME");
+        static LoadState SaveScene(string SaveToPath = "SAME");
 public:
         
         static std::shared_ptr<Impl> implementation;
