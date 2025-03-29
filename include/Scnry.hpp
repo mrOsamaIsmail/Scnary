@@ -76,8 +76,8 @@ public:
     Node();
     Node(const char* name, NodeType&& type, Array<float, 16>&& nodeMatrix_16,long id);
     Node(string&& name, NodeType&& type, Array<float, 16>&& nodeMatrix_16);
-    bool operator ==(const Node& other);
-    bool operator !=(const Node& other);
+    bool operator ==(const Node& other) const;
+    bool operator !=(const Node& other) const;
 };
 //dictionary (list) for each node type to pass a loader callback
 class Impl;
@@ -89,12 +89,14 @@ public:
         static list<string> Scenes;
         static Scene CurrentLoaded;
         //LoaderFunctions
-        static dictionary<NodeType , bool(*)(Node&,const string&)> NodeLoaders;
+        static dictionary<NodeType , bool(*)(Node&)> NodeLoaders;
         static bool Init();
         static LoadState RemoveItemFromScene(ISerializable const& Item);
         static LoadState LoadScene(const char* ScenePath);
         static LoadState LoadScene(uint SceneIndex);
         static LoadState AddItemToScene(ISerializable const& Item);
+        static LoadState AddNode(Node&& Item,int Patrnt = -1);
+        static LoadState RemoveNode(Node Item);
         static LoadState SaveScene(const char* SaveToPath = "SAME");
 public:
         

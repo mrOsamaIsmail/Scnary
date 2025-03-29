@@ -7,12 +7,19 @@
       "RelativeMoniker": "D:0:0:{D60CE526-42C2-5D1C-CBB6-57F3376B5420}|ScnrySingle.vcxproj|solutionrelative:Scnry.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{D60CE526-42C2-5D1C-CBB6-57F3376B5420}|ScnrySingle.vcxproj|C:\\Users\\osama\\OneDrive\\Desktop\\REPOS\\Scnary\\MainTest.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D60CE526-42C2-5D1C-CBB6-57F3376B5420}|ScnrySingle.vcxproj|solutionrelative:MainTest.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D60CE526-42C2-5D1C-CBB6-57F3376B5420}|ScnrySingle.vcxproj|C:\\Users\\osama\\OneDrive\\Desktop\\REPOS\\Scnary\\include\\Scnry.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{D60CE526-42C2-5D1C-CBB6-57F3376B5420}|ScnrySingle.vcxproj|solutionrelative:include\\Scnry.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D60CE526-42C2-5D1C-CBB6-57F3376B5420}|ScnrySingle.vcxproj|C:\\Users\\osama\\OneDrive\\Desktop\\REPOS\\Scnary\\MainTest.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D60CE526-42C2-5D1C-CBB6-57F3376B5420}|ScnrySingle.vcxproj|solutionrelative:MainTest.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{D60CE526-42C2-5D1C-CBB6-57F3376B5420}|ScnrySingle.vcxproj|C:\\Users\\osama\\OneDrive\\Desktop\\REPOS\\Scnary\\Dependencies\\yaml-cpp\\include\\yaml-cpp\\node\\impl.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D60CE526-42C2-5D1C-CBB6-57F3376B5420}|ScnrySingle.vcxproj|solutionrelative:Dependencies\\yaml-cpp\\include\\yaml-cpp\\node\\impl.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D60CE526-42C2-5D1C-CBB6-57F3376B5420}|ScnrySingle.vcxproj|C:\\PROGRAM FILES\\MICROSOFT VISUAL STUDIO\\2022\\COMMUNITY\\VC\\TOOLS\\MSVC\\14.42.34433\\INCLUDE\\LIST||{3B902123-F8A7-4915-9F01-361F908088D0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +29,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,26 +65,52 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
+              "Title": "impl.h",
+              "DocumentMoniker": "C:\\Users\\osama\\OneDrive\\Desktop\\REPOS\\Scnary\\Dependencies\\yaml-cpp\\include\\yaml-cpp\\node\\impl.h",
+              "RelativeDocumentMoniker": "Dependencies\\yaml-cpp\\include\\yaml-cpp\\node\\impl.h",
+              "ToolTip": "C:\\Users\\osama\\OneDrive\\Desktop\\REPOS\\Scnary\\Dependencies\\yaml-cpp\\include\\yaml-cpp\\node\\impl.h",
+              "RelativeToolTip": "Dependencies\\yaml-cpp\\include\\yaml-cpp\\node\\impl.h",
+              "ViewState": "AgIAAHgAAAAAAAAAAAAQwIIAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-29T15:55:58.75Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "list",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\include\\list",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\include\\list",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\include\\list",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.42.34433\\include\\list",
+              "ViewState": "AgIAAHcGAAAAAAAAAAAQwIEGAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-03-29T18:26:17.938Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Scnry.hpp",
               "DocumentMoniker": "C:\\Users\\osama\\OneDrive\\Desktop\\REPOS\\Scnary\\include\\Scnry.hpp",
               "RelativeDocumentMoniker": "include\\Scnry.hpp",
               "ToolTip": "C:\\Users\\osama\\OneDrive\\Desktop\\REPOS\\Scnary\\include\\Scnry.hpp",
               "RelativeToolTip": "include\\Scnry.hpp",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAcwEkAAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAAEwAAAAAAAAAAAApwFsAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-03-28T23:15:48.717Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "MainTest.cpp",
               "DocumentMoniker": "C:\\Users\\osama\\OneDrive\\Desktop\\REPOS\\Scnary\\MainTest.cpp",
               "RelativeDocumentMoniker": "MainTest.cpp",
               "ToolTip": "C:\\Users\\osama\\OneDrive\\Desktop\\REPOS\\Scnary\\MainTest.cpp",
               "RelativeToolTip": "MainTest.cpp",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAB4AAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAABAAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-28T21:54:25.427Z",
               "EditorCaption": ""
@@ -90,7 +123,7 @@
               "RelativeDocumentMoniker": "Scnry.cpp",
               "ToolTip": "C:\\Users\\osama\\OneDrive\\Desktop\\REPOS\\Scnary\\Scnry.cpp",
               "RelativeToolTip": "Scnry.cpp",
-              "ViewState": "AgIAADsAAAAAAAAAAAAcwEMAAABCAAAAAAAAAA==",
+              "ViewState": "AgIAANgAAAAAAAAAAAAYwOMAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-28T21:48:39.516Z",
               "EditorCaption": ""

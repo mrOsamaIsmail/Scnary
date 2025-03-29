@@ -4,6 +4,10 @@
 #include <fstream>
 #include <chrono>
 
+
+using Scene = Scnry::Scene;
+using LoadState = Scnry::LoadState;
+
 class Scnry::Impl
 {
 public:
@@ -96,6 +100,27 @@ namespace YAML
             }
             return sceneNode;
         }
+        static bool decode(const Node& node, Scnry::Scene& output) 
+        {
+            output.Name = node["SceneName"].as<string>();
+            output.Version = node["Version"].as<Scnry::Version>();
+            list<Scnry::Node> nodes;
+            YAML::Node SCNNodes = node["SceneNodes"];
+            Scnry::Node iterNode;
+            for (size_t i = 0; i < SCNNodes.size(); i++)
+            {
+                Node& current = SCNNodes[i];
+                //iterNode.Name = current[""]
+
+                iterNode.Name = current["Name"].as<string>();
+                iterNode.Type = static_cast<Scnry::NodeType>(current["NodeType"].as<int>());
+                iterNode.Parent = current["Parent"].as<int>();
+                iterNode.TransformMatrix = current["Transform"].as<Array<float, 16>>();
+                iterNode.AssetID = current["AssetID"].as<long>();
+                output.SceneNodes.push_back(iterNode);
+            }
+            return true;
+        }
     };
 }
 
@@ -103,7 +128,7 @@ namespace YAML
 
 
 std::shared_ptr<Scnry::Impl> Scnry::Scnry::implementation;
-dictionary<Scnry::NodeType, bool(*)(Scnry::Node&,const string&)> Scnry::Scnry::NodeLoaders;
+dictionary<Scnry::NodeType, bool(*)(Scnry::Node&)> Scnry::Scnry::NodeLoaders;
 Scnry::Scene Scnry::Scnry::CurrentLoaded;
 
 bool Scnry::Scnry::Init() 
@@ -144,14 +169,14 @@ Scnry::Node::Node():
     TransformMatrix(),
     Parent(-1)
 {}
-bool Scnry::Node::operator ==(const Node& other) 
+bool Scnry::Node::operator ==(const Node& other) const
 {
     if (other.Name == Name && other.Parent == Parent && other.Type == Type && other.TransformMatrix == TransformMatrix)
         return true;
     else
         return false;
 }
-bool Scnry::Node::operator !=(const Node& other) 
+bool Scnry::Node::operator !=(const Node& other) const
 {
     if (other.Name == Name && other.Parent == Parent && other.Type == Type && other.TransformMatrix == TransformMatrix)
         return false;
@@ -165,32 +190,16 @@ Scnry::LoadState Scnry::Scnry::LoadScene(const char* ScenePath)
     
     YAML::Node file = YAML::LoadFile(path);
     Scene currentScene;
+    currentScene = file["Scene"].as<Scene>();
     
-    currentScene.Name = file["SceneName"].as<string>();
-    currentScene.Version = (file["Version"]).as<Version>();
-  
-        
-    YAML::Node& sceneNodes = file["SceneNodes"];
-    sceneNodes.SetStyle(YAML::EmitterStyle::Block);
-    //Scnry::implementation->SetNode(file);
-    
-    for (size_t i = 0; i < sceneNodes.size(); i++)
+    for (Node& nodeRef : currentScene.SceneNodes)
     {
-        YAML::Node& node = sceneNodes[i];
-         
-        std::string res;
-        
-        Node Scene_node = Node();
-        Scene_node.Name = node["Name"].as<string>();
-        Scene_node.Type = static_cast<NodeType>(node["NodeType"].as<int>());
-        Scene_node.Parent = node["Parent"].as<int>();
-        Scene_node.TransformMatrix = node["Transform"].as<Array<float,16>>();
-        
-        Scnry::Scnry::NodeLoaders[Scene_node.Type](Scene_node,node["AssetId"].as<string>());
-        currentScene.SceneNodes.push_back(Scene_node);
+        //check to see if there is a loader for said node type
+        auto it = Scnry::Scnry::NodeLoaders.find(nodeRef.Type);
+        if(it != Scnry::NodeLoaders.end())
+            Scnry::Scnry::NodeLoaders[nodeRef.Type]((nodeRef));
     }
     Scnry::CurrentLoaded = currentScene;
-    //Scnry::implementation->SetNode(file);
     return LoadState::SUCCESS;
 }
 
@@ -224,13 +233,7 @@ Scnry::LoadState Scnry::Scnry::SaveScene(const char* SaveToPath)
 
 Scnry::LoadState Scnry::Scnry::AddItemToScene(ISerializable const& Item)
 {
-    YAML::Node newNode;
-    newNode["Name"] = "NewNode";
-    newNode["Transform"] = std::array<float, 16>({ 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 });
-    newNode["Transform"].SetStyle(YAML::EmitterStyle::Flow);
-    newNode["Parent"] = 2;
-    newNode["NodeType"] = 6;
-    newNode["AssetId"] = string("FFXG");
+    
 
     //((YAML::Node)Scnry::Scnry::implementation)["SceneNodes"].push_back(newNode);
     //auto& nodesNode = file["SceneNodes"];
@@ -240,5 +243,17 @@ Scnry::LoadState Scnry::Scnry::AddItemToScene(ISerializable const& Item)
 Scnry::LoadState Scnry::Scnry::RemoveItemFromScene(ISerializable const& Item)
 {
 
+    return LoadState::SUCCESS;
+}
+
+Scnry::LoadState Scnry::Scnry::AddNode(Node&& Item, int Patrnt) 
+{
+    Scnry::CurrentLoaded.SceneNodes.push_back(Item);
+    return LoadState::SUCCESS;
+}
+
+Scnry::LoadState Scnry::Scnry::RemoveNode(Node Item)
+{
+    Scnry::CurrentLoaded.SceneNodes.remove(Item);
     return LoadState::SUCCESS;
 }
