@@ -42,7 +42,13 @@ workspace "Scnry"
     project "ScnrySingle"
         language "C++"
         cppdialect "C++17"
-        kind "StaticLibrary"
+        kind "consoleApp"
+        includedirs
+        {
+            "./include",
+             "./Dependencies/yaml-cpp/include/"
+
+        }
         files {
             "./include/**.h",
             "./include/**.hpp",
@@ -50,8 +56,8 @@ workspace "Scnry"
             "./Dependencies/yaml-cpp/include/**.hpp",
             "./Dependencies/yaml-cpp/src/**.h",
             "./Dependencies/yaml-cpp/src/**.cpp",
-            "./Scnry.cpp"--,
-            --"./MainTest.cpp"
+            "./Scnry.cpp",
+            "./MainTest.cpp"
         }
        
         filter "configurations:Debug"

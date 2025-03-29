@@ -1,31 +1,60 @@
-//dell me plz
-#include <iostream>
 
-#include <Scnry.h>
 #include <yaml-cpp/yaml.h>
+#include <Scnry.hpp>
 #include <fstream>
 #include <chrono>
 
-namespace YAML 
+class Scnry::Impl
 {
+public:
+    YAML::Node Node;
+    Impl() {}
+
+    operator YAML::Node()const
+    {
+        return this->Node;
+    }
+
+    void SetNode(const YAML::Node& node)
+    {
+        this->Node = node;
+    }
+    //definitions are in the bottom
+
+};
+
+namespace YAML
+{
+    //template <typename T>
+    //struct convert<std::shared_ptr<T>> {
+    //    static Node encode(const std::shared_ptr<T>& ptr) {
+    //        if (!ptr) return Node();  // Handle nullptr case
+
+    //        return convert<T>::encode(*ptr);  // Encode the object itself
+    //    }
+
+    //    static bool decode(const Node& node, std::shared_ptr<T>& ptr) {
+    //        if (!node.IsDefined()) return false;
+
+    //        T obj;
+    //        bool success = convert<T>::decode(node, obj);
+    //        if (success) {
+    //            ptr = std::make_shared<T>(obj);
+    //        }
+    //        return success;
+    //    }
+    //};
     template <>
     struct convert<Scnry::Node> {
         static Node encode(const Scnry::Node& node)
         {
             Node _node;
-            /*_node.push_back("Name")//,node.Name);
-            _node["Parent"] = node.Parent;
-            _node["NodeType"] = node.Type;
-            _node["Transform"] = node.TransformMatrix;*/
 
             _node.push_back("Name"); //,node.Name);
             _node.push_back("Parent"); //,node.Name);
             _node.push_back("NodeType"); //,node.Name);
             _node.push_back("Transform"); //,node.Name);
-           /* _node["Name"] = node.Name;
-            _node["Parent"] = node.Parent;
-            _node["NodeType"] = node.Type;
-            _node["Transform"] = node.TransformMatrix; */
+            
             return _node;
         }
         static bool decode(const Node& node, Scnry::Node& SceneNode)
@@ -36,12 +65,49 @@ namespace YAML
             SceneNode.TransformMatrix = node["Transform"].as<std::array<float, 16>>();
             return true;
         }
-    
-       
+
+
     };
+    template<>
+    struct convert<std::shared_ptr<Scnry::Impl>> {
+        static Node encode(std::shared_ptr<Scnry::Impl> impl)
+        {
+            Node _node;
+
+            _node.push_back("Name"); //,node.Name);
+            _node.push_back("Parent"); //,node.Name);
+            _node.push_back("NodeType"); //,node.Name);
+            _node.push_back("Transform"); //,node.Name);
+
+            return _node;
+        }
+        static bool decode(const Node& node, std::shared_ptr<Scnry::Impl>& impl)
+        {
+            impl->Node = node;
+
+            /*SceneNode.Parent = node["Parent"].as<int>();
+            SceneNode.Type = static_cast<Scnry::NodeType>(node["NodeType"].as<int>());
+            SceneNode.TransformMatrix = node["Transform"].as<std::array<float, 16>>();*/
+            return true;
+        }
+
+
+    };
+
 }
 
+
+
+
+std::shared_ptr<Scnry::Impl> Scnry::Scnry::implementation;
 dictionary<Scnry::NodeType, bool(*)(Scnry::Node&,const string&)> Scnry::Scnry::NodeLoaders;
+bool Scnry::Scnry::Init() 
+{
+    //Scnry::Scnry::NodeLoaders() //= dictionary<Scnry::NodeType, bool(*)(Scnry::Node&, const string&)>();
+    Scnry::Scnry::CurrentLoaded = Scene();
+    Scnry::implementation = std::make_shared<Impl>();
+    return true;
+}
 
 Scnry::Scene Scnry::Scnry::CurrentLoaded;
 
@@ -53,7 +119,6 @@ Scnry::Scene::Scene(string SceneName) :
     VersionMin(0),
     LastEdit(0.0f)
 {}
-YAML::Node Scnry::Scnry::CurrentLoadedRoot;
 Scnry::Node::Node(const char* name, NodeType&& type, Array<float,16>&& nodeMatrix_16)
 :
     Name(string(name)),
@@ -98,7 +163,7 @@ Scnry::LoadState Scnry::LoadScene(const char* ScenePath)
         
     YAML::Node& sceneNodes = file["SceneNodes"];
     sceneNodes.SetStyle(YAML::EmitterStyle::Block);
-    Scnry::CurrentLoadedRoot = file;
+    Scnry::implementation->SetNode(file);
     
     for (size_t i = 0; i < sceneNodes.size(); i++)
     {
@@ -115,20 +180,15 @@ Scnry::LoadState Scnry::LoadScene(const char* ScenePath)
         Scnry::Scnry::NodeLoaders[Scene_node.Type](Scene_node,node["AssetId"].as<string>());
         
     }
-
-   
-
-
-
     Scnry::CurrentLoaded = currentScene;
-    Scnry::CurrentLoadedRoot = file;
+    Scnry::implementation->SetNode(file);
     return LoadState::SUCCESS;
 }
 
-Scnry::LoadState LoadScene(uint SceneIndex)
+Scnry::LoadState Scnry::Scnry::LoadScene(uint SceneIndex)
 {
-
-    return Scnry::LoadState::SUCCESS;
+    //Scnry::implementation = new Impl();
+    return LoadState::SUCCESS;
 }
 Scnry::LoadState Scnry::SaveScene(const char* SaveToPath)
 {
@@ -138,25 +198,28 @@ Scnry::LoadState Scnry::SaveScene(const char* SaveToPath)
     node["VersionMin"] = Scnry::CurrentLoaded.VersionMin;
     YAML::Emitter out;
 
-    out << Scnry::Scnry::CurrentLoadedRoot;
+    out << (YAML::Node)Scnry::Scnry::implementation;
 
     if (!out.good()) {
+#ifdef DEBUG
+
         std::cerr << "YAML Emission failed: " << out.GetLastError() << "\n";
+#endif // DEBUG
+
         return LoadState::FAIL;
     }
-
 
     std::ofstream fileOut(SaveToPath);
     fileOut << out.c_str();
     fileOut.close();
     return LoadState::SUCCESS;
 }
-Scnry::LoadState LoadSceneAsync(const char* ScenePath)
+Scnry::LoadState Scnry::Scnry::LoadSceneAsync(const char* ScenePath)
 {
-    return Scnry::LoadState::SUCCESS;
+    return LoadState::SUCCESS;
 }
 
-Scnry::LoadState AddItemToScene(Scnry::ISerializable const& Item)
+Scnry::LoadState Scnry::Scnry::AddItemToScene(ISerializable const& Item)
 {
     YAML::Node newNode;
     newNode["Name"] = "NewNode";
@@ -166,12 +229,13 @@ Scnry::LoadState AddItemToScene(Scnry::ISerializable const& Item)
     newNode["NodeType"] = 6;
     newNode["AssetId"] = string("FFXG");
 
-    Scnry::Scnry::CurrentLoadedRoot["SceneNodes"].push_back(newNode);
+    ((YAML::Node)Scnry::Scnry::implementation)["SceneNodes"].push_back(newNode);
     //auto& nodesNode = file["SceneNodes"];
-    return Scnry::LoadState::SUCCESS;
+    return LoadState::SUCCESS;
 }
-Scnry::LoadState RemoveItemFromScene(Scnry::ISerializable const& Item)
+
+Scnry::LoadState Scnry::Scnry::RemoveItemFromScene(ISerializable const& Item)
 {
 
-    return Scnry::LoadState::SUCCESS;
+    return LoadState::SUCCESS;
 }

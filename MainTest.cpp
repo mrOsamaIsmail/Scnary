@@ -1,4 +1,4 @@
-#include <Scnry.h>
+#include <Scnry.hpp>
 
 
 
@@ -24,6 +24,7 @@ int main()
 {
    
     //Scnry::LoadScene("tempScene.yaml");
+    Scnry::Scnry::Init();
     Scnry::Scnry::NodeLoaders[Scnry::NodeType::STATIC_MESH] = MeshLoader;
     Scnry::Scnry::NodeLoaders[Scnry::NodeType::CAMERA] = CameraLoader;
     std::string path = ("tempScene.scene");

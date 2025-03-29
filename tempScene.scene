@@ -1,15 +1,4 @@
-SceneName: TestScene
-Version:
-  Maj: 1
-  Min: 0
-SceneNodes:
-  - Name: Mesh
-    Transform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
-    Parent: 2
-    NodeType: 2
-    AssetId: FXVES
-  - Name: Cam
-    Transform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
-    Parent: 2
-    NodeType: 4
-    AssetId: XVBBBS
+- Name
+- Parent
+- NodeType
+- Transform
