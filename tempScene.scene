@@ -1,4 +1,16 @@
-- Name
-- Parent
-- NodeType
-- Transform
+Scene:
+  SceneName: TestScene
+  Version:
+    Maj: 1
+    Min: 0
+  SceneNodes:
+    - Name: Mesh
+      Parent: 2
+      NodeType: 2
+      Transform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+      AssetID: 456769476
+    - Name: Cam
+      Parent: 2
+      NodeType: 4
+      Transform: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+      AssetID: 456769476

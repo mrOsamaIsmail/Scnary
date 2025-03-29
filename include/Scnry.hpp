@@ -35,7 +35,14 @@ enum class LoadState{
 };
 
 
-
+class Version 
+{
+public:
+    Version();
+    Version(int maj,int min);
+    int min;
+    int maj;
+};
 class Node;
 class Scene{
     public:
@@ -44,8 +51,7 @@ class Scene{
     Scene(string SceneName = "SCEmpty");
    
     string Name;
-    int VersionMaj;
-    int VersionMin;
+    Version Version;
     uint Index;
     float LastEdit;
     
@@ -65,9 +71,10 @@ public:
     NodeType Type;
     int Parent;
     Array<float, 16> TransformMatrix;
+    long AssetID;
 public:
     Node();
-    Node(const char* name, NodeType&& type, Array<float, 16>&& nodeMatrix_16);
+    Node(const char* name, NodeType&& type, Array<float, 16>&& nodeMatrix_16,long id);
     Node(string&& name, NodeType&& type, Array<float, 16>&& nodeMatrix_16);
     bool operator ==(const Node& other);
     bool operator !=(const Node& other);
@@ -85,25 +92,13 @@ public:
         static dictionary<NodeType , bool(*)(Node&,const string&)> NodeLoaders;
         static bool Init();
         static LoadState RemoveItemFromScene(ISerializable const& Item);
-        static LoadState LoadSceneAsync(const char* ScenePath);
+        static LoadState LoadScene(const char* ScenePath);
         static LoadState LoadScene(uint SceneIndex);
         static LoadState AddItemToScene(ISerializable const& Item);
+        static LoadState SaveScene(const char* SaveToPath = "SAME");
 public:
         
         static std::shared_ptr<Impl> implementation;
 };
-
-
-
-
-
-LoadState LoadScene(const char* ScenePath);
-//LoadState LoadScene(uint SceneIndex);
-LoadState SaveScene(const char* SaveToPath = "SAME");
-//LoadState LoadSceneAsync(const char* ScenePath);
-
-//LoadState AddItemToScene(ISerializable const& Item);
-//LoadState RemoveItemFromScene(ISerializable const& Item);
-
 };
 #endif

@@ -2,7 +2,7 @@
 
 
 
-
+#define PRINT(x) std::cout << x << std::endl;
 #include <iostream>
 #include <string>
 
@@ -28,8 +28,10 @@ int main()
     Scnry::Scnry::NodeLoaders[Scnry::NodeType::STATIC_MESH] = MeshLoader;
     Scnry::Scnry::NodeLoaders[Scnry::NodeType::CAMERA] = CameraLoader;
     std::string path = ("tempScene.scene");
-    Scnry::LoadScene("./tempScene.scene");
-    Scnry::SaveScene("./tempScene.scene");
+    Scnry::Scnry::LoadScene("./tempScene.scene");
+    PRINT(Scnry::Scnry::CurrentLoaded.Name);
+    PRINT(Scnry::Scnry::CurrentLoaded.SceneNodes.size());
+    Scnry::Scnry::SaveScene("./tempScene.scene");
     return 0;
 }
 
