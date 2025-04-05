@@ -65,7 +65,7 @@ namespace YAML
             SceneNode.Parent = node["Parent"].as<int>();
             SceneNode.Type = static_cast<Scnry::NodeType>(node["NodeType"].as<int>());
             SceneNode.TransformMatrix = node["Transform"].as<std::array<float, 16>>();
-            SceneNode.AssetID = node["AssetID"].as<long>();
+            SceneNode.AssetID = node["AssetID"].as<unsigned long>();
             return true;
         }
 
@@ -102,7 +102,7 @@ namespace YAML
                 iterNode.Type = static_cast<Scnry::NodeType>(current["NodeType"].as<int>());
                 iterNode.Parent = current["Parent"].as<int>();
                 iterNode.TransformMatrix = current["Transform"].as<Array<float, 16>>();
-                iterNode.AssetID = current["AssetID"].as<long>();
+                iterNode.AssetID = current["AssetID"].as<unsigned long>();
                 output.SceneNodes.push_back(iterNode);
             }
             return true;
@@ -134,7 +134,7 @@ Scnry::Scene::Scene(string SceneName) :
     Index(0),
     LastEdit(0.0f)
 {}
-Scnry::Node::Node(const char* name, NodeType&& type, Array<float,16>&& nodeMatrix_16,long ID)
+Scnry::Node::Node(const char* name, NodeType&& type, Array<float,16>&& nodeMatrix_16,unsigned long ID)
 :
     Name(string(name)),
     Type(type),

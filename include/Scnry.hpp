@@ -71,10 +71,10 @@ public:
     NodeType Type;
     int Parent;
     Array<float, 16> TransformMatrix;
-    long AssetID;
+    unsigned long AssetID;
 public:
     Node();
-    Node(const char* name, NodeType&& type, Array<float, 16>&& nodeMatrix_16,long id);
+    Node(const char* name, NodeType&& type, Array<float, 16>&& nodeMatrix_16,unsigned long id);
     Node(string&& name, NodeType&& type, Array<float, 16>&& nodeMatrix_16);
     bool operator ==(const Node& other) const;
     bool operator !=(const Node& other) const;

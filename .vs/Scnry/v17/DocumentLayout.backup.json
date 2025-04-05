@@ -7,8 +7,8 @@
       "RelativeMoniker": "D:0:0:{0B14911C-F7E0-EB27-20FA-D9CF0C2621B6}|LibScnry.vcxproj|solutionrelative:Scnry.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0B14911C-F7E0-EB27-20FA-D9CF0C2621B6}|LibScnry.vcxproj|C:\\Users\\osama\\OneDrive\\Desktop\\REPOS\\Scnary\\include\\Scnry.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{0B14911C-F7E0-EB27-20FA-D9CF0C2621B6}|LibScnry.vcxproj|solutionrelative:include\\Scnry.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{0B14911C-F7E0-EB27-20FA-D9CF0C2621B6}|LibScnry.vcxproj|C:\\Users\\osama\\OneDrive\\Desktop\\REPOS\\Scnary\\INCLUDE\\SCNRY.HPP||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0B14911C-F7E0-EB27-20FA-D9CF0C2621B6}|LibScnry.vcxproj|solutionrelative:INCLUDE\\SCNRY.HPP||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{54151A3A-C07F-CEB0-09BE-7F567567AC05}|ScnryTest.vcxproj|C:\\Users\\osama\\OneDrive\\Desktop\\REPOS\\Scnary\\Test\\MainTest.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,16 +58,28 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Scnry.cpp",
+              "DocumentMoniker": "C:\\Users\\osama\\OneDrive\\Desktop\\REPOS\\Scnary\\Scnry.cpp",
+              "RelativeDocumentMoniker": "Scnry.cpp",
+              "ToolTip": "C:\\Users\\osama\\OneDrive\\Desktop\\REPOS\\Scnary\\Scnry.cpp",
+              "RelativeToolTip": "Scnry.cpp",
+              "ViewState": "AgIAAJQAAAAAAAAAAAAtwKMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-04-04T18:42:59.045Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
               "Title": "MainTest.cpp",
               "DocumentMoniker": "C:\\Users\\osama\\OneDrive\\Desktop\\REPOS\\Scnary\\Test\\MainTest.cpp",
               "RelativeDocumentMoniker": "Test\\MainTest.cpp",
               "ToolTip": "C:\\Users\\osama\\OneDrive\\Desktop\\REPOS\\Scnary\\Test\\MainTest.cpp",
               "RelativeToolTip": "Test\\MainTest.cpp",
-              "ViewState": "AgIAABwAAAAAAAAAAAAYwCkAAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-03-29T22:18:42.245Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-29T22:18:42.245Z"
             },
             {
               "$type": "Document",
@@ -77,22 +89,9 @@
               "RelativeDocumentMoniker": "include\\Scnry.hpp",
               "ToolTip": "C:\\Users\\osama\\OneDrive\\Desktop\\REPOS\\Scnary\\include\\Scnry.hpp",
               "RelativeToolTip": "include\\Scnry.hpp",
-              "ViewState": "AgIAAFoAAAAAAAAAAAApwGQAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAADQAAAAAAAAAAAAtwEwAAABaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-03-28T23:15:48.717Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Scnry.cpp",
-              "DocumentMoniker": "C:\\Users\\osama\\OneDrive\\Desktop\\REPOS\\Scnary\\Scnry.cpp",
-              "RelativeDocumentMoniker": "Scnry.cpp",
-              "ToolTip": "C:\\Users\\osama\\OneDrive\\Desktop\\REPOS\\Scnary\\Scnry.cpp",
-              "RelativeToolTip": "Scnry.cpp",
-              "ViewState": "AgIAAMoAAAAAAAAAAAApwNgAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-03-28T21:48:39.516Z",
               "EditorCaption": ""
             }
           ]
